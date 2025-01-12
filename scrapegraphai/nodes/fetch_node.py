@@ -4,6 +4,7 @@ FetchNode Module
 
 import json
 from typing import List, Optional
+import time
 
 import requests
 from langchain_community.document_loaders import PyPDFLoader
@@ -262,6 +263,10 @@ class FetchNode(BaseNode):
         if self.use_soup:
             response = requests.get(source)
             if response.status_code == 200:
+                
+                print("delaying for 2 sec...")
+                time.sleep(2)
+                
                 if not response.text.strip():
                     raise ValueError("No HTML body content found in the response.")
 
